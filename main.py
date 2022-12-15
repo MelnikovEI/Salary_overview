@@ -131,7 +131,12 @@ def print_report(report: dict, table_title):
     print(salary_table.table)
 
 
-sj_report = get_sj_report()
-hh_report = get_hh_report()
-print_report(sj_report, 'SuperJob Moscow')
-print_report(hh_report, 'HeadHunter Moscow')
+def main():
+    sj_report = get_sj_report()
+    hh_report = get_hh_report()
+    print_report(sj_report, 'SuperJob Moscow')
+    print_report(hh_report, 'HeadHunter Moscow')
+
+
+if __name__ == '__main__':
+    main()
