@@ -9,6 +9,9 @@ sj_token = env('SJ_TOKEN')
 
 PROGRAMMING_LANGUAGES = ('Javascript', 'Java', 'Python', 'Ruby', 'PHP', 'C++', 'C', 'Go', 'Shell', 'Objective-C',
                          'Scala', 'Swift', 'TypeScript')
+HH_MOSCOW_ID = 1
+SJ_MOSCOW_ID = 4
+SJ_PROGRAMMING_CATALOG_ID = 48
 
 
 def predict_salary(salary_from, salary_to):
@@ -45,7 +48,7 @@ def get_hh_report():
         vacancies = []
         params = {
             'text': language,
-            'area': 1,
+            'area': HH_MOSCOW_ID,
             'page': 0
         }
         while params['page'] < pages_number:
@@ -54,7 +57,7 @@ def get_hh_report():
             page_vacancies = hh_response.json()
             vacancies.extend(page_vacancies['items'])
             pages_number = page_vacancies['pages']
-            print('headhunter', language, ': processed page ', params['page'] + 1, ' from ', pages_number)
+            #print('headhunter', language, ': processed page ', params['page'] + 1, ' from ', pages_number)
             params['page'] += 1
 
         vacancies_processed = 0
@@ -88,8 +91,8 @@ def get_sj_report():
         vacancies = []
         params = {
             'keyword': language,
-            'town': 4,
-            'catalogues': 48,
+            'town': SJ_MOSCOW_ID,
+            'catalogues': SJ_PROGRAMMING_CATALOG_ID,
             'page': 0
         }
         more = True
@@ -99,7 +102,7 @@ def get_sj_report():
             page_vacancies = sj_response.json()
             more = page_vacancies['more']
             vacancies.extend(page_vacancies['objects'])
-            print('superjob', language, ': processed page ', params['page'] + 1)
+            #print('superjob', language, ': processed page ', params['page'] + 1)
             params['page'] += 1
         vacancies_processed = 0
         salaries_sum = 0
