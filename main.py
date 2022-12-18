@@ -106,8 +106,8 @@ def get_sj_report():
             params['page'] += 1
         vacancies_processed = 0
         salaries_sum = 0
-        for item in vacancies:
-            salary = predict_rub_salary_sj(item)
+        for vacancy in vacancies:
+            salary = predict_rub_salary_sj(vacancy)
             if salary:
                 salaries_sum += salary
                 vacancies_processed += 1
