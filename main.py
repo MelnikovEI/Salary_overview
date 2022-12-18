@@ -66,7 +66,7 @@ def get_hh_report():
             if salary:
                 salaries_sum += salary
                 vacancies_processed += 1
-        if vacancies_processed == 0:
+        if not vacancies_processed:
             average_salary = 0
         else:
             average_salary = int(salaries_sum / vacancies_processed)
@@ -110,7 +110,7 @@ def get_sj_report():
             if salary:
                 salaries_sum += salary
                 vacancies_processed += 1
-        if vacancies_processed == 0:
+        if not vacancies_processed:
             average_salary = 0
         else:
             average_salary = int(salaries_sum / vacancies_processed)
