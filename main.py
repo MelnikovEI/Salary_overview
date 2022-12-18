@@ -26,12 +26,12 @@ def predict_salary(salary_from, salary_to):
 
 
 def predict_rub_salary_hh(vacancy):
-    salary_info = vacancy['salary']
-    if not salary_info:
+    salary = vacancy['salary']
+    if not salary:
         return None
-    if salary_info['currency'] != 'RUR':
+    if salary['currency'] != 'RUR':
         return None
-    return predict_salary(salary_info['from'], salary_info['to'])
+    return predict_salary(salary['from'], salary['to'])
 
 
 def predict_rub_salary_sj(vacancy):
@@ -120,10 +120,10 @@ def get_sj_report():
 
 
 def print_report(report: dict, table_title):
-    table_data = [['Язык программирования', 'Вакансий найдено', 'Вакансий обработано', 'Средняя зарплата']]
+    salary_table = [['Язык программирования', 'Вакансий найдено', 'Вакансий обработано', 'Средняя зарплата']]
     for prog_lang in report:
-        table_data.append([prog_lang, *(report[prog_lang].values())])
-    salary_table = AsciiTable(table_data, table_title)
+        salary_table.append([prog_lang, *(report[prog_lang].values())])
+    salary_table = AsciiTable(salary_table, table_title)
     print(salary_table.table)
 
 
