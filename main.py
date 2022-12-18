@@ -15,15 +15,14 @@ SJ_PROGRAMMING_CATALOG_ID = 48
 
 
 def predict_salary(salary_from, salary_to):
-    if salary_from:
-        if salary_to:
-            return (salary_from + salary_to) / 2
-        else:
-            return salary_from * 1.2
-    elif salary_to:
-        return salary_to * 0.8
-    else:
+    if not salary_from and not salary_to:
         return None
+    if salary_from and salary_to:
+        return (salary_from + salary_to) / 2
+    if salary_from:
+        return salary_from * 1.2
+    if salary_to:
+        return salary_to * 0.8
 
 
 def predict_rub_salary_hh(vacancy):
