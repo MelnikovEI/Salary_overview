@@ -70,14 +70,11 @@ def get_hh_report():
             average_salary = 0
         else:
             average_salary = int(salaries_sum / vacancies_processed)
-        report.update({
-            language:
-                {
-                    "vacancies_found": page_vacancies['found'],
-                    "vacancies_processed": vacancies_processed,
-                    "average_salary": average_salary
-                }
-        })
+        report[language] = {
+            "vacancies_found": page_vacancies['found'],
+            "vacancies_processed": vacancies_processed,
+            "average_salary": average_salary
+        }
     return report
 
 
@@ -114,14 +111,11 @@ def get_sj_report():
             average_salary = 0
         else:
             average_salary = int(salaries_sum / vacancies_processed)
-        report.update({
-            language:
-                {
-                    "vacancies_found": page_vacancies['total'],
-                    "vacancies_processed": vacancies_processed,
-                    "average_salary": average_salary
-                }
-        })
+        report[language] = {
+            "vacancies_found": page_vacancies['total'],
+            "vacancies_processed": vacancies_processed,
+            "average_salary": average_salary
+        }
     return report
 
 
