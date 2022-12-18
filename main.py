@@ -56,7 +56,6 @@ def get_hh_report():
             page_vacancies = hh_response.json()
             vacancies.extend(page_vacancies['items'])
             pages_number = page_vacancies['pages']
-            #print('headhunter', language, ': processed page ', params['page'] + 1, ' from ', pages_number)
             params['page'] += 1
 
         vacancies_processed = 0
@@ -98,7 +97,6 @@ def get_sj_report():
             page_vacancies = sj_response.json()
             more = page_vacancies['more']
             vacancies.extend(page_vacancies['objects'])
-            #print('superjob', language, ': processed page ', params['page'] + 1)
             params['page'] += 1
         vacancies_processed = 0
         salaries_sum = 0
@@ -119,19 +117,19 @@ def get_sj_report():
     return report
 
 
-def print_report(report: dict, table_title):
+def get_salary_table(report: dict, table_title):
     salary_table = [['Язык программирования', 'Вакансий найдено', 'Вакансий обработано', 'Средняя зарплата']]
     for prog_lang in report:
         salary_table.append([prog_lang, *(report[prog_lang].values())])
     salary_table = AsciiTable(salary_table, table_title)
-    print(salary_table.table)
+    return salary_table.table
 
 
 def main():
     sj_report = get_sj_report()
     hh_report = get_hh_report()
-    print_report(sj_report, 'SuperJob Moscow')
-    print_report(hh_report, 'HeadHunter Moscow')
+    print(get_salary_table(sj_report, 'SuperJob Moscow'))
+    print(get_salary_table(hh_report, 'HeadHunter Moscow'))
 
 
 if __name__ == '__main__':
