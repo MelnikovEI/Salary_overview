@@ -2,11 +2,6 @@ import requests as requests
 from terminaltables import AsciiTable
 from environs import Env
 
-
-env = Env()
-env.read_env()
-sj_token = env('SJ_TOKEN')
-
 PROGRAMMING_LANGUAGES = ('Javascript', 'Java', 'Python', 'Ruby', 'PHP', 'C++', 'C', 'Go', 'Shell', 'Objective-C',
                          'Scala', 'Swift', 'TypeScript')
 HH_MOSCOW_ID = 1
@@ -77,7 +72,7 @@ def get_hh_report():
     return report
 
 
-def get_sj_report():
+def get_sj_report(sj_token):
     headers = {
         'X-Api-App-Id': sj_token,
     }
@@ -126,7 +121,9 @@ def get_salary_table(report: dict, table_title):
 
 
 def main():
-    sj_report = get_sj_report()
+    env = Env()
+    env.read_env()
+    sj_report = get_sj_report(env('SJ_TOKEN'))
     hh_report = get_hh_report()
     print(get_salary_table(sj_report, 'SuperJob Moscow'))
     print(get_salary_table(hh_report, 'HeadHunter Moscow'))
